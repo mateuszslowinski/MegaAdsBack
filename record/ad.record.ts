@@ -15,12 +15,20 @@ export class AdRecord implements AdEntity {
     lon: number;
 
     constructor(obj: NewAdEntity) {
+        this.id = obj.id;
+        this.name = obj.name;
+        this.description = obj.description;
+        this.price = obj.price;
+        this.url = obj.url;
+        this.lat = obj.lat;
+        this.lon = obj.lon;
+
 
         if (!obj.name || obj.name.length > 100) {
             throw new ValidationError('Nazwa ogłoszenia nie może być pusta, ani przekraczać 100 znaków');
         }
 
-        if (obj.description.length < 1000) {
+        if (obj.description.length > 1000) {
             throw new ValidationError('Treść ogłoszenia nie może przekraczać 1000 znaków');
         }
         if (obj.price < 0 || obj.price > 9999999) {
